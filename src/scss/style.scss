@@ -1,0 +1,80 @@
+@mixin center-position{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: $main-back-color;
+}
+.cont{
+    width: 100vw;
+    height: 100vh;
+    @include center-position
+}
+@media(min-width: 320px){
+    .cont{
+        align-items: flex-start;
+    }
+    .cart{
+        min-width: 300px;
+        &__header{
+            min-height: 50px;
+
+        }
+        &__mainTitle{
+            min-height: inherit;
+            font-size: 32px;
+            @include center-position
+        }
+        &__form{
+            height: 40px;
+            margin-bottom: 20px;
+        }
+        &__input{
+            height: inherit;
+            width: 220px;
+            padding-left: 10px;
+            border: 1px solid $border;
+            border-radius: 10px;
+        }
+        &__btn{
+            height: inherit;
+            width: 70px;
+            border: 1px solid $border;
+            border-radius: 10px;
+            background-color: $add-btn;
+            color: #ffff;
+        }
+
+    }
+    .orderedList{
+        &__li{
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: 20px 1fr 75px;
+            font-size: 16px;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+        &__text{
+            padding-left: 10px;
+            text-decoration: line-through;
+            @include center-position
+        }
+        &__deleteBtn{
+            margin-right: 5px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid $border;
+            background-color: $delete-btn;
+            color: white;
+        }
+    }
+}
