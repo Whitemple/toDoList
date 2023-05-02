@@ -58,18 +58,87 @@ body{
         &__li{
             display: grid;
             grid-auto-flow: column;
-            grid-template-columns: 20px 1fr 75px;
+            grid-template-columns: 30px 1fr 75px;
             font-size: 16px;
             width: 300px;
             margin-bottom: 10px;
         }
+        &__radioBtn{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border:1px solid black;
+            background-color: white;
+            padding: 3px;
+            align-self: center;
+            justify-self: center;
+        }
+        &__radioBtn:hover{
+            cursor: pointer;
+        }
+
         &__text{
             padding-left: 10px;
-            text-decoration: line-through;
+            text-decoration: none;
             @include center-position
         }
         &__deleteBtn{
             margin-right: 5px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid $border;
+            background-color: $delete-btn;
+            color: white;
+        }
+    }
+}
+@media(min-width: 425px){
+    .cart{
+        min-width: 405px;
+        &__header{
+            min-height: 50px;
+        }
+        &__mainTitle{
+            margin: 10px 0;
+        }
+        &__input{
+            width: 320px;
+        }
+        &__btn{
+            width: 80px;
+        }
+    }
+    .orderedList{
+        &__li{
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: 30px 1fr 80px;
+            font-size: 16px;
+            width: 403px;
+            margin-bottom: 10px;
+        }
+        &__radioBtn{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border:1px solid black;
+            background-color: white;
+            padding: 3px;
+            align-self: center;
+            justify-self: center;
+        }
+        &__radioBtn:hover{
+            cursor: pointer;
+        }
+
+        &__text{
+            padding-left: 10px;
+            text-decoration: none;
+            @include center-position
+        }
+        &__deleteBtn{
+            // margin-right: 5px;
+            width: 80px;
             height: 40px;
             border-radius: 10px;
             border: 1px solid $border;
