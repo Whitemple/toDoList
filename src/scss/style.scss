@@ -4,6 +4,9 @@
     align-items: center;
 }
 
+::placeholder {
+    color: var(--c, gray);
+  }
 
 *{
     padding: 0;
@@ -117,33 +120,37 @@ body{
             width: 403px;
             margin-bottom: 10px;
         }
-        &__radioBtn{
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border:1px solid black;
-            background-color: white;
-            padding: 3px;
-            align-self: center;
-            justify-self: center;
-        }
-        &__radioBtn:hover{
-            cursor: pointer;
-        }
-
-        &__text{
-            padding-left: 10px;
-            text-decoration: none;
-            @include center-position
-        }
         &__deleteBtn{
-            // margin-right: 5px;
             width: 80px;
-            height: 40px;
-            border-radius: 10px;
-            border: 1px solid $border;
-            background-color: $delete-btn;
-            color: white;
+        }
+    }
+}
+@media(min-width: 425px){
+    .cart__input{
+        margin-right: 10px;
+    }
+    .orderedList__li{
+        width: 414px;
+    }
+}
+@media(min-width: 1140px){
+    .cart{
+        &__form{
+            margin-bottom: 40px;
+        }
+        &__input{
+            width: 500px;
+            margin-bottom: 10px;
+        }
+        &__btn{
+            width: 100px;
+        }
+        &__showDoneBtn{
+            border: none;
+            background-color: $main-back-color;
+            color: rgb(126, 126, 126);
+            border-bottom: dashed;
+            display: flex;
         }
     }
 }
