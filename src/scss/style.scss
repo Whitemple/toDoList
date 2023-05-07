@@ -1,156 +1,192 @@
-@mixin center-position{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@mixin center-position {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 ::placeholder {
-    color: var(--c, gray);
+  color: var(--c, gray);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: $main-back-color;
+}
+.cont {
+  width: 100vw;
+  height: 100vh;
+  @include center-position;
+}
+.cart{
+  &__form {
+    height: 40px;
+    margin-bottom: 40px;
+  }
+  &__input{
+    margin-bottom: 10px;
+  }
+  &__showWishBtn {
+    border: none;
+    background-color: $main-back-color;
+    color: $showWishBtn;
+    border-bottom: dashed;
+    display: flex;
+    margin-right: 20px;
+  }
+  &__bottomCont{
+    display: flex;
+  }
+}
+.orderedList{
+  &__radioBtn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: white;
+    padding: 3px;
+    align-self: center;
+    justify-self: center;
+  }
+  &__radioBtnUnactive{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: white;
+    padding: 3px;
+    align-self: center;
+    justify-self: center;
+    background-color: $showWishBtn;
+    box-shadow: inset 0px 0px 1px 5px #fff;
+  }
+  &__textUnactive{
+    padding-left: 10px;
+    text-decoration: line-through;
+    @include center-position;
+  }
+}
+.colorText{
+  color: $add-btn;
+}
+
+
+@media (min-width: 320px) {
+  .cont {
+    align-items: flex-start;
+  }
+  .cart {
+    min-width: 300px;
+    &__header {
+      min-height: 50px;
+    }
+    &__mainTitle {
+      min-height: inherit;
+      font-size: 32px;
+      @include center-position;
+    }
+
+    &__input {
+      height: inherit;
+      width: 220px;
+      padding-left: 10px;
+      border: 1px solid $border;
+      border-radius: 10px;
+    }
+    &__btn {
+      height: inherit;
+      width: 70px;
+      border: 1px solid $border;
+      border-radius: 10px;
+      background-color: $add-btn;
+      color: #ffff;
+    }
+  }
+  .orderedList {
+    &__li {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: 30px 1fr 75px;
+      font-size: 16px;
+      width: 300px;
+      margin-bottom: 10px;
+    }
+    &__radioBtn:hover {
+      cursor: pointer;
+    }
+
+    &__text {
+      padding-left: 10px;
+      text-decoration: none;
+      @include center-position;
+    }
+    &__deleteBtn {
+      margin-right: 5px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid $border;
+      background-color: $delete-btn;
+      color: white;
+    }
+  }
+}
+
+
+
+@media (min-width: 425px) {
+  .cart {
+    min-width: 405px;
+    &__header {
+      min-height: 50px;
+    }
+    &__mainTitle {
+      margin: 10px 0;
+    }
+    &__input {
+      width: 320px;
+    }
+    &__btn {
+      width: 80px;
+    }
+  }
+  .orderedList {
+    &__li {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: 30px 1fr 80px;
+      font-size: 16px;
+      width: 403px;
+      margin-bottom: 10px;
+    }
+    &__deleteBtn {
+      width: 80px;
+    }
+  }
+}
+
+
+@media (min-width: 425px) {
+  .cart__input {
+    margin-right: 10px;
+  }
+  .orderedList__li {
+    width: 414px;
+  }
+}
+
+
+@media (min-width: 1140px) {
+  .cart {
+    &__input {
+      width: 500px;
+    }
+    &__btn {
+      width: 100px;
+    }
   }
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-body{
-    background-color: $main-back-color;
-}
-.cont{
-    width: 100vw;
-    height: 100vh;
-    @include center-position
-}
-@media(min-width: 320px){
-    .cont{
-        align-items: flex-start;
-    }
-    .cart{
-        min-width: 300px;
-        &__header{
-            min-height: 50px;
-
-        }
-        &__mainTitle{
-            min-height: inherit;
-            font-size: 32px;
-            @include center-position
-        }
-        &__form{
-            height: 40px;
-            margin-bottom: 20px;
-        }
-        &__input{
-            height: inherit;
-            width: 220px;
-            padding-left: 10px;
-            border: 1px solid $border;
-            border-radius: 10px;
-        }
-        &__btn{
-            height: inherit;
-            width: 70px;
-            border: 1px solid $border;
-            border-radius: 10px;
-            background-color: $add-btn;
-            color: #ffff;
-        }
-
-    }
-    .orderedList{
-        &__li{
-            display: grid;
-            grid-auto-flow: column;
-            grid-template-columns: 30px 1fr 75px;
-            font-size: 16px;
-            width: 300px;
-            margin-bottom: 10px;
-        }
-        &__radioBtn{
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border:1px solid black;
-            background-color: white;
-            padding: 3px;
-            align-self: center;
-            justify-self: center;
-        }
-        &__radioBtn:hover{
-            cursor: pointer;
-        }
-
-        &__text{
-            padding-left: 10px;
-            text-decoration: none;
-            @include center-position
-        }
-        &__deleteBtn{
-            margin-right: 5px;
-            height: 40px;
-            border-radius: 10px;
-            border: 1px solid $border;
-            background-color: $delete-btn;
-            color: white;
-        }
-    }
-}
-@media(min-width: 425px){
-    .cart{
-        min-width: 405px;
-        &__header{
-            min-height: 50px;
-        }
-        &__mainTitle{
-            margin: 10px 0;
-        }
-        &__input{
-            width: 320px;
-        }
-        &__btn{
-            width: 80px;
-        }
-    }
-    .orderedList{
-        &__li{
-            display: grid;
-            grid-auto-flow: column;
-            grid-template-columns: 30px 1fr 80px;
-            font-size: 16px;
-            width: 403px;
-            margin-bottom: 10px;
-        }
-        &__deleteBtn{
-            width: 80px;
-        }
-    }
-}
-@media(min-width: 425px){
-    .cart__input{
-        margin-right: 10px;
-    }
-    .orderedList__li{
-        width: 414px;
-    }
-}
-@media(min-width: 1140px){
-    .cart{
-        &__form{
-            margin-bottom: 40px;
-        }
-        &__input{
-            width: 500px;
-            margin-bottom: 10px;
-        }
-        &__btn{
-            width: 100px;
-        }
-        &__showDoneBtn{
-            border: none;
-            background-color: $main-back-color;
-            color: rgb(126, 126, 126);
-            border-bottom: dashed;
-            display: flex;
-        }
-    }
 }
