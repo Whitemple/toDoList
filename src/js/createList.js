@@ -1,16 +1,16 @@
 // Создаем константы которые будут нужны для работы
-const cart__btn = document.querySelector(".cart__btn");
+const cartBtn = document.querySelector(".cart__btn");
 const orderedList = document.querySelector(".orderedList");
-const showDoneWishesBtn = document.getElementById('cart__showDoneBtn');
-const showToDoWishesBtn = document.getElementById('cart__showToDoBtn');
+const showDoneWishesBtn = document.getElementById("cart__showDoneBtn");
+const showToDoWishesBtn = document.getElementById("cart__showToDoBtn");
 // Создаем переменную чтобы иметь к ней доступ везде в коде
 let valueToLocal;
 // Создаем 2 пустых массива для записи данных в LocalStorage
 let dataBase = [];
 const doneWishes = [];
 // Создаем переменные для ограничения по кол-ву записанных дел
-let dataBaseWishesNumber = 10;
-let doneWishesNumber = 10;
+const dataBaseWishesNumber = 10;
+const doneWishesNumber = 10;
 
 // Функция добавления данных в LocalStorage
 function setToLocalStorage(value) {
@@ -54,7 +54,7 @@ function addList() {
   deleteBtn.innerText = "Delete";
   deleteBtn.dataset.listItems = randomDataAttr;
 
-  if (inputValue.value != "") {
+  if (inputValue.value !== "") {
     li.append(radioBtn);
     li.append(text);
     li.append(deleteBtn);
@@ -71,7 +71,11 @@ function addList() {
 }
 
 // Функция построения элемента списка и переноса его в другую секцию с ранее нажатыми параметарми
-function getListByLocalStorage(data, classTitleBtn="orderedList__radioBtn", classTitleText="orderedList__text") {
+function getListByLocalStorage(
+  data,
+  classTitleBtn = "orderedList__radioBtn",
+  classTitleText = "orderedList__text"
+) {
   const randomDataAttr = Math.floor(Math.random() * (1000 - 1) + 1);
   const subTextAttr = Math.floor(Math.random() * (500 - 1) + 1);
   const li = document.createElement("li");
@@ -95,10 +99,10 @@ function getListByLocalStorage(data, classTitleBtn="orderedList__radioBtn", clas
   li.append(text);
   li.append(deleteBtn);
   return li;
-};
+}
 
 // Функция удаления значения из LocalStorage
-function removeFromAllDB(allDataBase, prevSub){
+function removeFromAllDB(allDataBase, prevSub) {
   const getFromDataBase = localStorage.getItem(allDataBase);
   if (getFromDataBase) {
     const dataBaseJson = JSON.parse(getFromDataBase);
@@ -129,10 +133,10 @@ orderedList.addEventListener("click", (event) => {
   if (event.target.dataset.subItems) {
     if (event.target.className === "orderedList__radioBtn") {
       const text = event.target.nextSibling;
-      text.classList.remove('orderedList__text');
-      text.classList.add('orderedList__textUnactive');
-      event.target.classList.remove('orderedList__radioBtn');
-      event.target.classList.add('orderedList__radioBtnUnactive');
+      text.classList.remove("orderedList__text");
+      text.classList.add("orderedList__textUnactive");
+      event.target.classList.remove("orderedList__radioBtn");
+      event.target.classList.add("orderedList__radioBtnUnactive");
       const nextSibling = event.target.nextSibling.innerText;
       const getFromDataBase = localStorage.getItem("dataBase");
       if (getFromDataBase) {
@@ -160,25 +164,32 @@ orderedList.addEventListener("click", (event) => {
 });
 
 // Строим элемент при наличии данных в LocalStorage
-function createStartPage(dataBase){
-  const getData = localStorage.getItem(dataBase);
+function createStartPage(dataBaseValue) {
+  const getData = localStorage.getItem(dataBaseValue);
   if (getData && getData.length > 0) {
     const getDataJson = JSON.parse(getData);
-    if(dataBase === 'doneWishes'){
-      for (data of getDataJson) {
-        orderedList.append(getListByLocalStorage(data, 'orderedList__radioBtnUnactive', 'orderedList__textUnactive'));
+    if (dataBaseValue === "doneWishes") {
+      /* eslint-disable-next-line */
+      for (let data of getDataJson) {
+        orderedList.append(
+          getListByLocalStorage(
+            data,
+            "orderedList__radioBtnUnactive",
+            "orderedList__textUnactive"
+          )
+        );
       }
-    }
-    else{
-      for (data of getDataJson) {
+    } else {
+      /* eslint-disable-next-line */
+      for (let data of getDataJson) {
         orderedList.append(getListByLocalStorage(data));
       }
-    }    
+    }
   }
-};
+}
 
 // При нажатии на кнопку строим элемент
-cart__btn.addEventListener("click", (e) => {
+cartBtn.addEventListener("click", (e) => {
   e.preventDefault();
   addList();
   if (valueToLocal) {
@@ -187,25 +198,25 @@ cart__btn.addEventListener("click", (e) => {
 });
 
 // Слушаем событие при нажатии на кнопку "Показать выполеннные"
-showDoneWishesBtn.addEventListener('click', (e) => {
+showDoneWishesBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  showToDoWishesBtn.classList.remove('colorText');
-  showDoneWishesBtn.classList.add('colorText');
-  orderedList.innerHTML = '';
+  showToDoWishesBtn.classList.remove("colorText");
+  showDoneWishesBtn.classList.add("colorText");
+  orderedList.innerHTML = "";
   createStartPage("doneWishes");
 });
 
 // Слушаем событие при нажатии на кнопку "В работе"
-showToDoWishesBtn.addEventListener('click', (e) => {
+showToDoWishesBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  showDoneWishesBtn.classList.remove('colorText');
-  showToDoWishesBtn.classList.add('colorText');
-  orderedList.innerHTML = '';
+  showDoneWishesBtn.classList.remove("colorText");
+  showToDoWishesBtn.classList.add("colorText");
+  orderedList.innerHTML = "";
   createStartPage("dataBase");
 });
 
 // При загрузке страницы выводим список из LocalStorage при наличии
 window.onload = () => {
-  orderedList.innerHTML = '';
+  orderedList.innerHTML = "";
   createStartPage("dataBase");
 };
